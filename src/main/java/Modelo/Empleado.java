@@ -1,34 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-/**
- *
- * @author USER
- */
 @Entity
-@Table(name = "Empleados")
+@Table(name = "empleados")
 public class Empleado implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String nombre;
@@ -37,36 +26,31 @@ public class Empleado implements Serializable {
     private String email;
 
     @Column(nullable = false)
-    private double salario;
+    private Double salario;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Estatus estatus;
 
-    
     @Column(name = "fecha_contratacion", nullable = false)
-    private LocalDate fechaConcentracion;
+    private LocalDate fechaContratacion;
 
     public Empleado() {
     }
 
-    public Empleado(String nombre, String email, double salario, Estatus estatus, LocalDate fechaConcentracion) {
-        this.id = id;
+    public Empleado(String nombre, String email, Double salario, Estatus estatus, LocalDate fechaContratacion) {
         this.nombre = nombre;
         this.email = email;
         this.salario = salario;
         this.estatus = estatus;
-        this.fechaConcentracion = fechaConcentracion;
+        this.fechaContratacion = fechaContratacion;
     }
 
-    
-
-    
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -86,11 +70,11 @@ public class Empleado implements Serializable {
         this.email = email;
     }
 
-    public double getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 
@@ -102,12 +86,16 @@ public class Empleado implements Serializable {
         this.estatus = estatus;
     }
 
-    public LocalDate getFechaConcentracion() {
-        return fechaConcentracion;
+    public LocalDate getFechaContratacion() {
+        return fechaContratacion;
     }
 
-    public void setFechaConcentracion(LocalDate fechaConcentracion) {
-        this.fechaConcentracion = fechaConcentracion;
+    public void setFechaContratacion(LocalDate fechaContratacion) { // Corregido
+        this.fechaContratacion = fechaContratacion;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "id=" + id + ", nombre='" + nombre + '\'' + ", email='" + email + '\'' + ", salario=" + salario + ", estatus=" + estatus + ", fechaContratacion=" + fechaContratacion + '}';
+    }
 }
